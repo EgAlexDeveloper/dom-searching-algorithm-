@@ -1,0 +1,56 @@
+<html>
+
+<head></head>
+
+<body>
+    <input type="text" class="search" placeholder="search here" />
+    <ul class="test">
+        <li>test 1</li>
+        <li>test 2</li>
+        <li>test 3</li>
+        <li>test 4</li>
+        <li>wessam 1</li>
+        <li>Moustafa 2</li>
+    </ul>
+    <script>
+    var TEST = function() {
+        window.addEventListener('load', this.init, false);
+    };
+
+    TEST.prototype.init = function() {
+        TEST.prototype.JSON = {};
+        TEST.prototype.createDataJson();
+        TEST.prototype.events();
+    };
+
+    TEST.prototype.events = function() {
+        document.querySelector('.search').addEventListener('keyup', this.search, false);
+    };
+
+    TEST.prototype.createDataJson = function() {
+        var li = document.querySelector('.test').children,
+            jsonData = TEST.prototype.JSON;
+        for (var key in li) {
+            jsonData[key] = li[key].innerHTML;
+        }
+    };
+
+    TEST.prototype.search = function(event) {
+        var val = event.target.value,
+            jsonData = TEST.prototype.JSON,
+            regex = new RegExp(val, "g"),
+            li = document.querySelector('.test');
+
+        li.innerHTML = "";
+        for (var key in jsonData) {
+            if (jsonData[key].match(regex)) {
+                li.innerHTML += "<li>" + jsonData[key] + "</li>";
+            }
+        }
+    };
+
+    new TEST();
+    </script>
+</body>
+
+</html>
